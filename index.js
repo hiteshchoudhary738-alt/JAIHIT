@@ -8,7 +8,7 @@ async function handleFormSubmit(event) {
     var data = new FormData(event.target);
 
     // This is where the Formspree URL goes in JavaScript
-    fetch("https://formspree.io/f/projects", {
+    fetch("https://formspree.io/f/account", {
         method: "POST",
         body: data,
         headers: {
@@ -86,3 +86,4 @@ window.onload = function() {
     }
 
 };
+
