@@ -1,130 +1,115 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JAI INDUSTRIES</title>   
-    <link rel="stylesheet" href="style.css"> 
-
-
+    <title>JAI INDUSTRIES</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-<h1>
-          JAI INDUSTRIES WELCOMES YOU</h1>
-    
-    
-<h4>PRIME MINISTER'S SOLAR PROGRAM REGISTRATION FORM</h4>
+    <div class="hero-section">
+        <div class="hero-text">
+            <h1>JAI INDUSTRIES WELCOMES U</h1>
+            <p>PRIME MINISTER'S ROOFTOP SCHEME REGISTRATION FORM</p>
+        </div>
+    </div>
+    <form onsubmit="handleFormSubmit(event)">
+        
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+ <label for="fathername">Father's Name:</label>
+            <input type="text" id="fathername" name="fathername" required><br><br>
 
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required><br><br>
 
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required><br><br>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required><br><br>
+<label for="gender">Gender:</label>
+<input type="radio" id="male" name="gender" value="male">
+<label for="male">Male</label>
+<input type="radio" id="female" name="gender" value="female">
+<label for="female">Female</label>
+<input type="radio" id="other" name="gender" value="other">
+<label for="other">Other</label><br><br>
+<label for="electricity-bill">Electricity Bill:</label>
+<input type="number" id="electricity-bill" name="electricity-bill" requiured><br><br>
 
-
-
-<div>
-    <table>
-        <tr>
-    
-<TD><img src="IMG-20251021-WA0006.jpg" alt="JAI INDUSTRIES" width="95%" height="10%"></TD>
-
-<TD><img src="IMG-20251021-WA0010.jpg" alt="JAI INDUSTRIES" width="95%" height="10%"></TD>
-
-        </tr>
-    </table>
-</div>
-   
-   
-   
-    
-   <form>
-<label for ="id1">
-<input type="USERNAME" value ="" name="username" id1="id1"> Username
-
-</label>
+<div class="container">
+        <label for="stateSelect">Select State:</label>
+        <select id="stateSelect" onchange="updateDistricts()">
+            <option value="">-- Select State --</option>
+           
+            <option value="Gujarat">Gujarat</option>
+            <option value="Rajasthan">Rajasthan</option>
+        </select>
+    </div>
 <br>
-<label for ="id2">
-<input type ="FATHERNAME" value="" name="fathername" id2="id2"> Father Name
+    <div class="container">
+        <label for="districtSelect">Select District:</label>
+        <select id="districtSelect">
+            <option value="">-- Select State First --</option>
+        </select>
+    </div>
 
-</label>
-<br><br>
+    <script>
+        // 1. THE DATA: Map states to their specific districts
+        const stateData = {
+            
+            "Gujarat": ["Palanpur", "Sidhpur", "Maehsana"],
+            "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur", "Kota", "Pali", "Sirohi", "Rajsamand", "Ajmer"]
+        };
 
-<label for ="id3">
-    <input type="radio" value="GENDER" name="GENDER" id3="id3"> Male
-    <input type="radio" value="GENDER" name="       GENDER" id3="id3">  Female
-<br> 
-<label for ="id4">
-    <input type="radio" value ="state" name=""state" id3="id3"> RAJASTHAN
-    <input type="radio" value ="state" name=""state" id3="id3"> GUJARAT
-</label>
-<select name="city" id="'city">
-<option value="JAIPUR"> JAIPUR</option>
-<OPTION VALUE =" UDAIPUR"> udaipur</OPTION>
-<option value="JALORE"> JAlORE </option>
-<option value="PALI"> PALI </option>
-<option value="SIROHI"> SIROHI  </option>
-<option value="AHMEDABAD"> AHMEDABAD</option>option>
-<option value="RAJKOT"> RAJKOT</option>
-<option value="SURAT"> SURAT</option>
-<option value="VADODARA"> VADODARA</option>
+        function updateDistricts() {
+            // Get the HTML elements
+            const stateSelect = document.getElementById("stateSelect");
+            const districtSelect = document.getElementById("districtSelect");
 
+            // Get the currently selected state value (e.g., "Gujarat")
+            const selectedState = stateSelect.value;
 
+            // Clear existing options in the District dropdown
+            districtSelect.innerHTML = "";
 
+            // Check if a valid state is selected
+            if (selectedState !== "") {
+                
+                // Get the list of districts for that state from our data object
+                const districts = stateData[selectedState];
 
-</select>
+                // Create the default "Select District" option
+                let defaultOption = document.createElement("option");
+                defaultOption.text = "-- Select District --";
+                defaultOption.value = "";
+                districtSelect.add(defaultOption);
 
+                // Loop through the districts and add them as options
+                districts.forEach(function(district) {
+                    let newOption = document.createElement("option");
+                    newOption.text = district;
+                    newOption.value = district;
+                    districtSelect.add(newOption);
+                });
 
+            } else {
+                // If no state is selected (user picked the default top option), reset district
+                let defaultOption = document.createElement("option");
+                defaultOption.text = "-- Select State First --";
+                districtSelect.add(defaultOption);
+            }
+        }
+    </script>
 
-<br>
-
-
-
-<label for ="id5">
-<input type="number" value="MOBILE NUMBER" name="MOBILENUMBER" id5="id5"> Mobile Number
-</label>
-<br><br>
-<label for ="id6">
-<input type="email" value="" name="EMAIL" id6="id6"> Email Address
-</label>
-<br><br>
-<label for ="id7">
-<input type="ADDRESS COMPLETE" value="" name="ADDRESS COMPLETE" id7="id7"> Address Complete
-</label>
-<br><BR>
-<label for ="id8">
-    <INPUT TYPE="pincode" VALUE="" NAME="PINCODE" ID8="id8"> Pincode
-</label>
-<br><br>
-<label for ="id9">
-    <input type="age" value="" name="AGE" id9="id9"> Age
-</label>
-<br>
-<br>
-<textarea name="feedback" id="id10" placeholder="pleasure give your thoughts"> feedback</textarea>    feedback
-
-    
-
-<BR><br>
-
- 
-
-<aside> for more details contact us at 1800-123-4567</aside>
-<aside>
-or mail at xyz14@gmail.com  </aside>
-
-<br><br>    
-
-
-
-<h2> THANK U FOR YOUR VALUABLE TIME 
-<img src="positive-smile-emoji-with-hearts-free-png.png" alt="smile emoji" width="5%" height="5%"> </h2>
-
-
-
-<button type="submit"  width="25%" height="20"> SUBMIT  </button> 
-
-
-
-
-    </form>
+<h3>Upload Required Documents:</h3>
+<label for="idProof">ID Proof:</label>
+<input type="file" id="idProof" name="idProof" accept=".pdf,.jpg,.png" required><br><br>
+<label for="electricitybill">Electricity Bill:</label>    
+<input type="file" id="electricitybill" name="electricitybill" accept=".pdf,.jpg,.png" required><br><br>
+<label for="">
 
 
 
@@ -134,8 +119,10 @@ or mail at xyz14@gmail.com  </aside>
 
 
 
-
-
-
+            <button type="submit">Submit</button>
+        <script 
+    > alert("JAI INDUSTRIES" );
+            </script>
+            <script src="index.js"></script>
 </body>
 </html>
